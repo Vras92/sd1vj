@@ -1,24 +1,25 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::get('/', [HomeController::class, 'home'])->name('home');
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::prefix('client')->group(function () {
+    Route::get('/', [HomeController::class, 'client'])->name('client');
+    Route::get('/conferences', [ClientController::class, 'conferences'])->name('conferences');
+});
 
-Route::get('/client', [ClientController::class, 'client'])->name('client');
-Route::get('/employee', [ClientController::class, 'client'])->name('employee');
-Route::get('/admin', [ClientController::class, 'client'])->name('admin');
-Route::get('/adminUser', [ClientController::class, 'client'])->name('adminUser');
+Route::get('/employee', [HomeController::class, 'employee'])->name('employee');
+
+Route::prefix('admin')->group(function () {
+    Route::get('/', [HomeController::class, 'admin'])->name('admin');
+    Route::get('/user', [AdminController::class, 'adminUser'])->name('adminUser');
+    Route::get('/user/modify/{id}', [UserController::class, 'modifyUser'])->name('modifyUser');
+    Route::put('/user/update/{id}', [UserController::class, 'updateUser'])->name('updateUser');
+    Route::get('/user/management', [AdminController::class, 'adminUserManagement'])->name('adminUserManagement');
+    Route::get('/conferences', [AdminController::class, 'adminConference'])->name('adminConference');
+});
