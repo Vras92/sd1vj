@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ConferenceController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -21,5 +22,11 @@ Route::prefix('admin')->group(function () {
     Route::get('/user/modify/{id}', [UserController::class, 'modifyUser'])->name('modifyUser');
     Route::put('/user/update/{id}', [UserController::class, 'updateUser'])->name('updateUser');
     Route::get('/user/management', [AdminController::class, 'adminUserManagement'])->name('adminUserManagement');
-    Route::get('/conferences', [AdminController::class, 'adminConference'])->name('adminConference');
+    Route::get('/conferences', [ConferenceController::class, 'adminConference'])->name('adminConference');
+    Route::get('/conferences/modify/{id}', [ConferenceController::class, 'modifyConference'])->name('modifyConference');
+    Route::put('/conferences/update/{id}', [ConferenceController::class, 'updateConference'])->name('updateConference');
+    Route::delete('/conferences/delete/{id}', [ConferenceController::class, 'deleteConference'])->name('deleteConference');
+    Route::get('/conferences/create-conference', [ConferenceController::class, 'create'])->name('createConference');
+    Route::post('/conferences/create-conference', [ConferenceController::class, 'store'])->name('storeConference');
+
 });

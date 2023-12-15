@@ -7,9 +7,6 @@ use App\Utils\UserDatabase;
 
 class AdminController extends Controller
 {
-    public function adminConference() {
-        return view('adminConference');
-    }
     public function adminUser()
     {
         if (!session()->has('users_generated')) {
@@ -26,7 +23,6 @@ class AdminController extends Controller
                 UserDatabase::addUser($user);
             }
 
-            // Set the flag in the session
             session(['users_generated' => true]);
         }
 
