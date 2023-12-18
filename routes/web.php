@@ -3,15 +3,16 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ConferenceController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::prefix('client')->group(function () {
-    Route::get('/', [HomeController::class, 'client'])->name('client');
-    Route::get('/conferences', [ClientController::class, 'conferences'])->name('conferences');
+    Route::get('/', [ClientController::class, 'conferences'])->name('client');
+    Route::get('/conferences/view/{id}', [ClientController::class, 'viewConference'])->name('viewConference');
+    Route::post('/client/conferences/register/{id}', [ClientController::class, 'registerConference'])->name('registerConference');
 });
 
 Route::get('/employee', [HomeController::class, 'employee'])->name('employee');

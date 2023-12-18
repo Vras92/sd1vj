@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Faker\Factory as FakerFactory;
 use App\Utils\UserDatabase;
+use Faker\Factory as FakerFactory;
 
 class AdminController extends Controller
 {
