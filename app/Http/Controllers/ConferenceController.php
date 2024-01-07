@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ConferenceController extends Controller
 {
-    public function adminConference()
+    public function adminConference(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $conferences = session('conferences');
 
@@ -47,7 +47,7 @@ class ConferenceController extends Controller
         }
     }
 
-    public function deleteConference($id)
+    public function deleteConference($id): \Illuminate\Http\RedirectResponse
     {
         if (ConferenceDatabase::isConferenceFinished($id)) {
             return redirect()->route('adminConference')->with('error', 'Cannot delete a finished conference');
@@ -69,7 +69,7 @@ class ConferenceController extends Controller
         }
     }
 
-    public function updateConference(Request $request, $id)
+    public function updateConference(Request $request, $id): \Illuminate\Http\RedirectResponse
     {
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
@@ -88,12 +88,12 @@ class ConferenceController extends Controller
         return redirect()->route('adminConference')->with('success', 'Conference updated successfully');
     }
 
-    public function create()
+    public function create(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         return view('createConference', ['conference' => ['id' => null]]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',

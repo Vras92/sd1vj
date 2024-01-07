@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<html>
 <head>
+    <title>Conference System</title>
     @include('includes.head')
 </head>
 <body>
@@ -22,8 +22,9 @@
         @include('includes.footer')
     </footer>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="{{ asset('assets/js/scripts.js') }}"></script>
+{{--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>--}}
+{{--<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>--}}
+{{--<script src="{{ asset('assets/js/scripts.js') }}"></script>--}}
+<script src="{{ mix('js/app.js') }}" defer></script>
 </body>
 </html>

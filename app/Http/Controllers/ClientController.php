@@ -7,13 +7,13 @@ use Illuminate\Support\Facades\Session;
 
 class ClientController extends Controller
 {
-    public function conferences()
+    public function conferences(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $conferences = ConferenceDatabase::getConferences();
         return view('client', ['conferences' => $conferences]);
     }
 
-    public function viewConference($id)
+    public function viewConference($id): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
         $conference = ConferenceDatabase::getConferenceById($id);
 
@@ -24,7 +24,7 @@ class ClientController extends Controller
         return view('viewConference', ['conference' => $conference]);
     }
 
-    public function registerConference($id)
+    public function registerConference($id): \Illuminate\Http\RedirectResponse
     {
         $conference = ConferenceDatabase::getConferenceById($id);
 
@@ -41,7 +41,7 @@ class ClientController extends Controller
         return redirect()->route('client')->with('success', 'Conference registration successful');
     }
 
-    private function isConferenceRegistered($id)
+    private function isConferenceRegistered($id): bool
     {
         $registeredConferences = Session::get('registered_conferences', []);
         return in_array($id, $registeredConferences);

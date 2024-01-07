@@ -18,7 +18,7 @@ class UserController extends Controller
         }
     }
 
-    public function updateUser(Request $request, $id)
+    public function updateUser(Request $request, $id): \Illuminate\Http\RedirectResponse
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',

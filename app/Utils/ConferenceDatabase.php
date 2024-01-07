@@ -57,7 +57,7 @@ class ConferenceDatabase
         session(['conferences' => $conferences]);
     }
 
-    public static function isConferenceFinished($id)
+    public static function isConferenceFinished($id): bool
     {
         $conference = self::getConferenceById($id);
 

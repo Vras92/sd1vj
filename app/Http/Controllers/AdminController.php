@@ -7,7 +7,7 @@ use Faker\Factory as FakerFactory;
 
 class AdminController extends Controller
 {
-    public function adminUser()
+    public function adminUser(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         if (!session()->has('users_generated')) {
             $faker = FakerFactory::create();
@@ -31,7 +31,8 @@ class AdminController extends Controller
         return view('adminUser', ['allUsers' => $allUsers]);
     }
 
-    public function adminUserManagement() {
+    public function adminUserManagement(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    {
         return view('adminUserManagement');
     }
 
